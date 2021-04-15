@@ -16,7 +16,7 @@ import java.util.List;
 @Service("BookServiceImpl")
 public class BookServiceImpl implements BookService{
 
-    //service调dao层！
+//service调dao层！
 
     @Autowired
     private BookMapper bookMapper;
@@ -48,5 +48,10 @@ public class BookServiceImpl implements BookService{
     @Override
     public List<Books> queryAllBook() {
         return bookMapper.queryAllBook();
+    }
+
+    @Override
+    public Books queryBookByName(String bookName) {
+        return bookMapper.queryBookByName(bookName);
     }
 }

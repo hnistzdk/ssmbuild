@@ -28,6 +28,13 @@
 <%--                新增书籍--%>
                 <a href="${pageContext.request.contextPath}/book/toAddBook">新增书籍</a>
             </div>
+            <div class="col-md-4 column">
+<%--                查询书籍--%>
+                <form action="" method="post" style="float: right">
+                    <input type="text" name="bookName" placeholder="请输入要查询的书籍名称" class="form-select-button">
+                    <input type="submit" value="查询" class="button">
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -53,7 +60,7 @@
                         <td>${book.bookCounts}</td>
                         <td>${book.detail}</td>
                         <td><a href="${pageContext.request.contextPath}/book/toModifyBook?id=${book.bookID}">修改</a></td>
-                        <td><a href="${pageContext.request.contextPath}/book/deleteBook?id=${book.bookID}" id="delete">删除</a></td>
+                        <td><a href="${pageContext.request.contextPath}/book/deleteBook?id=${book.bookID}" class="deleteBook">删除</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -62,7 +69,7 @@
 </div>
 </body>
 <script type="text/javascript">
-    $('#delete').click(function () {
+    $('.deleteBook').click(function () {
         let res = confirm('您确定要删除这本书吗');
         if(res){
             return true;
