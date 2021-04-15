@@ -5,6 +5,9 @@
     <title>书籍展示</title>
     <%--    用bootstrap美化--%>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/statics/js/jquery-1.8.3.min.js">
+
+    </script>
 </head>
 <body>
 <%--栅格--%>
@@ -49,11 +52,8 @@
                         <td>${book.bookName}</td>
                         <td>${book.bookCounts}</td>
                         <td>${book.detail}</td>
-                        <td><a>修改</a></td>
-                        <td><a>删除</a></td>
-
-
-
+                        <td><a href="${pageContext.request.contextPath}/book/toModifyBook?id=${book.bookID}">修改</a></td>
+                        <td><a href="${pageContext.request.contextPath}/book/deleteBook?id=${book.bookID}" id="delete">删除</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -61,5 +61,15 @@
     </div>
 </div>
 </body>
+<script type="text/javascript">
+    $('#delete').click(function () {
+        let res = confirm('您确定要删除这本书吗');
+        if(res){
+            return true;
+        }else {
+            return false;
+        }
+    })
+</script>
 </html>
 
