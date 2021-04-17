@@ -2,13 +2,13 @@ package com.zdk.controller;
 
 import com.zdk.pojo.Books;
 import com.zdk.service.BookService;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -77,7 +77,13 @@ public class BookController {
     @RequestMapping("/queryBookByName")
     public String queryBookByName(String bookName,Model model){
         Books queryBookByName = bookService.queryBookByName(bookName);
-        model.addAttribute("queryBookByName",queryBookByName);
-        return null;
+        if(queryBookByName==null){
+            model.addAttribute("error", "未查询到对应书籍");
+            return "redirect:/book/allBook";
+        }
+        List<Books> list=new ArrayList<>();
+        list.add(queryBookByName);
+        model.addAttribute("list",list);
+        return "allBook";
     }
 }

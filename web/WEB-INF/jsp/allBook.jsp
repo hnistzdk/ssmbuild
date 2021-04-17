@@ -5,7 +5,7 @@
     <title>书籍展示</title>
     <%--    用bootstrap美化--%>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/statics/js/jquery-1.8.3.min.js">
+    <script src="/statics/js/jquery-3.4.1.js">
 
     </script>
 </head>
@@ -27,10 +27,12 @@
             <div class="col-md-4 column">
 <%--                新增书籍--%>
                 <a href="${pageContext.request.contextPath}/book/toAddBook">新增书籍</a>
+                <a href="${pageContext.request.contextPath}/book/allBook">显示全部书籍</a>
             </div>
             <div class="col-md-4 column">
 <%--                查询书籍--%>
-                <form action="" method="post" style="float: right">
+                <form class="line" action="${pageContext.request.contextPath}/book/queryBookByName" method="post" style="float: right">
+                    <span style="color: red;font-weight: bold">${error}</span>
                     <input type="text" name="bookName" placeholder="请输入要查询的书籍名称" class="form-select-button">
                     <input type="submit" value="查询" class="button">
                 </form>
@@ -59,8 +61,10 @@
                         <td>${book.bookName}</td>
                         <td>${book.bookCounts}</td>
                         <td>${book.detail}</td>
-                        <td><a href="${pageContext.request.contextPath}/book/toModifyBook?id=${book.bookID}">修改</a></td>
-                        <td><a href="${pageContext.request.contextPath}/book/deleteBook?id=${book.bookID}" class="deleteBook">删除</a></td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/book/toModifyBook?id=${book.bookID}">修改</a>
+                            <a href="${pageContext.request.contextPath}/book/deleteBook?id=${book.bookID}" class="deleteBook">删除</a>
+                        </td>
                     </tr>
                 </c:forEach>
             </tbody>
